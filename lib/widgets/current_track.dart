@@ -168,7 +168,6 @@ class _MoreControls extends StatelessWidget {
         IconButton(
           onPressed: () {},
           icon: Icon(Icons.devices_outlined),
-          iconSize: 20,
           color: Colors.white,
         ),
         Row(
@@ -176,7 +175,6 @@ class _MoreControls extends StatelessWidget {
             IconButton(
               onPressed: () {},
               icon: Icon(Icons.volume_up_outlined),
-              iconSize: 20,
               color: Colors.white,
             ),
             Container(

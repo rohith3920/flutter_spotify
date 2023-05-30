@@ -80,9 +80,23 @@ class PlaylistHeader extends StatelessWidget {
   }
 }
 
-class _PlaylistButtons extends StatelessWidget {
+class _PlaylistButtons extends StatefulWidget {
   final String followers;
+
   const _PlaylistButtons({required this.followers, Key? key}) : super(key: key);
+
+  @override
+  State<_PlaylistButtons> createState() => _PlaylistButtonsState();
+}
+
+class _PlaylistButtonsState extends State<_PlaylistButtons> {
+  bool isFavorite = false;
+
+  void onFavoriteButtonPressed() {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +125,12 @@ class _PlaylistButtons extends StatelessWidget {
           width: 8,
         ),
         IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.favorite_border,
-            color: Colors.white,
-          ),
+          onPressed: onFavoriteButtonPressed,
+          icon:
+              (isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border)),
+          color: isFavorite ? Colors.red : Colors.white,
+          // Icon(Icons.favorite_border,
+          //     color: isFavorite ? Colors.red : Colors.white),
           iconSize: 30,
         ),
         IconButton(
@@ -128,7 +143,7 @@ class _PlaylistButtons extends StatelessWidget {
         ),
         Spacer(),
         Text(
-          'Followers\n$followers',
+          'Followers\n${widget.followers}',
           style: GoogleFonts.montserrat(
               fontSize: 12,
               // fontWeight: FontWeight.bold,
